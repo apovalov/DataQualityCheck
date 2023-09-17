@@ -4,7 +4,8 @@
 * If incorrect data comes to the input of an analytical report, the report will show incorrect results.
 * If a dataset with errors is used to train an ML model, the model's predictions will also have errors.
 ￼
-￼
+￼![dg_garbage_in_out](https://github.com/apovalov/DataQualityCheck/assets/43651275/bafbeb3c-9e71-4293-b575-891884e26749)
+
 ## What data properties are important to us
 
 * Completeness: presence of required and optional fields, gaps in the data.
@@ -12,7 +13,9 @@
 * Availability: Data is readable.
 * Veracity: Values are unambiguous and within acceptable limits.
 
-￼
+  
+![pipeline](https://github.com/apovalov/DataQualityCheck/assets/43651275/1f27ec30-0420-4fb6-a500-36235ef2fa3b)
+
 * Data - data
 * Checklist - list of metrics, checked values and allowed values
 * DQ module - framework for data quality check and report building
@@ -56,6 +59,7 @@ report.fit(spark_tables)
 print(report.to_str())
 
 ```
+![dq_report_HmVLe9g](https://github.com/apovalov/DataQualityCheck/assets/43651275/ed221830-fdc8-49f6-8da5-f3e726ea9561)
 
 Description of columns:
 * table_name (str type) - name of the table to be checked (the key of the tables dictionary passed to the Report class instance)
