@@ -134,100 +134,21 @@ class Report:
         """Calculate DQ metrics and build report."""
         self.report_ = {}
         report = self.report_
-
-        # # Check if engine supported
-        for table_name, metric, limits in self.checklist:
-            report_entry = {
-                "table_name": table_name,
-                "metric": str(metric),
-                "limits": str(limits),
-                "values": {},
-                "status": "",
-                "error": None
-            }
-
-            try:
-                # Perform the metric calculation on the corresponding table
-                metric_results = metric(tables[table_name])
-                # Check if the metric_results contain the keys defined in limits
-                if len(limits.items()) == 0:
-                    report_entry["values"] = metric_results
-                    report_entry["error"] = ""
-                    report_entry["status"] += "."
-                for metric_key, (min_limit, max_limit) in limits.items():
-                    if metric_key in metric_results:
-                        # value = metric_results[metric_key]
-                        report_entry["values"] = metric_results #[metric_key] = value
-                        report_entry["error"] = ""
-
-                        # Compare the metric value with the provided limits
-                        if min_limit <= metric_results[metric_key] <= max_limit:
-                            report_entry["status"] += "."
-                        else:
-                            report_entry["status"] += "F"
-                    else:
-                        # Metric key not found in results, set status as "E" for error
-                        report_entry["status"] += "E"
-
-            except Exception as e:
-                # Error occurred during metric calculation
-                report_entry["status"] = "E"
-                report_entry["error"] = str(e)
-
-            # Add the entry to the report
-            report.setdefault("result", []).append(report_entry)
-
-        # Calculate overall DQ metrics
-        passed_count = sum(entry["status"].count(".") for entry in report["result"])
-        failed_count = sum(entry["status"].count("F") for entry in report["result"])
-        error_count = sum(entry["status"].count("E") for entry in report["result"])
-        total_checks = passed_count + failed_count + error_count
-
-        report["passed"] = passed_count
-        report["failed"] = failed_count
-        report["errors"] = error_count
-        report["total"] = total_checks
-
-        if total_checks > 0:
-            report["passed_pct"] = (passed_count / total_checks) * 100
-            report["failed_pct"] = (failed_count / total_checks) * 100
-            report["errors_pct"] = (error_count / total_checks) * 100
-        else:
-            report["passed_pct"] = 0
-            report["failed_pct"] = 0
-            report["errors_pct"] = 0
-        report['result'] = pd.DataFrame(report['result'])
-
-        table_names = list(tables.keys())
-        table_names.sort()
-        report["title"] = "DQ Report for tables {}".format(table_names)
+        ...
         return report
 
 
     def _fit_pyspark(self, tables: Dict[str, Union[pd.DataFrame, ps.DataFrame]]) -> Dict:
-            """Calculate DQ metrics and build report."""
-            self.report_ = {}
-            report = self.report_
-            ...
-
-            return report
+        """Calculate DQ metrics and build report."""
+        self.report_ = {}
+        report = self.report_
+        ...
+        return report
 
 
     def to_str(self) -> None:
         """Convert report to string format."""
-        report = self.report_
-
-        msg = (
-            "This Report instance is not fitted yet. "
-            "Call 'fit' before usong this method."
-        )
-
-        assert isinstance(report, dict), msg
-
-        pd.set_option("display.max_rows", 500)
-        pd.set_option("display.max_columns", 500)
-        pd.set_option("display.max_colwidth", 50)
-        pd.set_option("display.width", 1000)
+        ...
 
         return (
             f"{report['title']}\n\n"
