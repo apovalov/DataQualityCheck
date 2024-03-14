@@ -218,5 +218,3 @@ Spark, on the other hand, is designed specifically for the task of distributed p
 Such a framework is needed to build a certain data-driven product where the ETL process is quite complex. For example, it may include model training, data processing before training / before recording / before sending. And the whole process needs to be done on demand or on schedule.
 
 PySpark code is much more readable as the complexity of the query or data processing algorithm grows. With Spark, abstractions are added that make the process of developing maintenance, adjusting business logic and interacting with tables much easier.
-
-Translated with www.DeepL.com/Translator (free version)
